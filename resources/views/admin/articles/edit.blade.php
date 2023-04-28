@@ -41,7 +41,7 @@
                     <input type="text" name="description" value="{{ $article->name }}" class="form-control"> <br>
 
                     <strong> content :</strong>
-                    <input type="text" name="description" value="{{ $article->content }}" class="form-control"> <br>
+                    <input type="text" name="content" value="{{ $article->content }}" class="form-control"> <br>
 
                     <input type="submit" value="O'zgartirish">
 
