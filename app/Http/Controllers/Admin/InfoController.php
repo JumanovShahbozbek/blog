@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreInfoRequest;
+use App\Models\Info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,14 +22,26 @@ class InfoController extends Controller
         return view('admin.infos.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreInfoRequest $request)
     {
+
+        $requestData = $request->all();
+
+        if($request->hasFile('icon'))
+        {
+            $file = $request->file('icon');
+            $iconName = $file->getClientOriginalName();
+            $file->move('images/',$iconName);
+            $requestData['icon'] = $iconName;
+        }
+        Info::create($requestData);
+
         // dd($request);
-        DB::table('infos')->insert([
+        /* DB::table('infos')->insert([
             'title' => $request->title,
             'icon' => $request->icon,
             'description' => $request->description
-        ]);
+        ]); */
 
         return redirect()->route('admin.infos.index');
     }
@@ -51,8 +65,8 @@ class InfoController extends Controller
 
         DB::table('infos')->where('id', $id)->update([
             'title' => $request->title,
-            'description' => $request->description,
             'icon' => $request->icon,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('admin.infos.index');

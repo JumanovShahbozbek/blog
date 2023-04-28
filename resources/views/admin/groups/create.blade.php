@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Yangi o'qituvchi qo'shish</h4>
+                            <h4>Yangi gurux qo'shish</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.groups.store') }}" method="POST" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">icon</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control" name="icon">
+                                        <input type="file" class="form-control" name="icon">
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">

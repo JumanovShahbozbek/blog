@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreGroupRequest;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,11 +21,28 @@ class GroupController extends Controller
     {
         return view('admin.groups.create');
     }
+    
 
-    public function store(Request $request)
+    public function store(StoreGroupRequest $request)
     {
+        
+        /*   $request->validate([
+            'icon' => 'required',
+        ]); */
+
+        $requestData = $request->all();
+
+        if($request->hasFile('icon'))
+        {
+            $file = $request->file('icon');
+            $iconName = $file->getClientOriginalName();
+            $file->move('images/', $iconName);
+            $requestData['icon'] = $iconName;
+        }
+        Group::create($requestData);
+
        /* dd($request); */
-       DB::table('groups')->insert([
+       /* DB::table('groups')->insert([
         'icon' => $request->icon,
         'title' => $request->title,
         'content' => $request->content,
@@ -31,7 +50,7 @@ class GroupController extends Controller
         'seat' => $request->seat,
         'time' => $request->time,
         'payment' => $request->payment,
-       ]);
+       ]); */
 
        return redirect()->route('admin.groups.index');
     }

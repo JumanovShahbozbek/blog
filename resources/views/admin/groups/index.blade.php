@@ -16,7 +16,7 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <h4>Teachers</h4>
+                            <h4>Group</h4>
                             <a href="{{ route('admin.groups.create') }}" class="btn btn-primary"
                                 style="position:absolute; right:50;">Create</a>
                         </div>
@@ -52,7 +52,7 @@
                                                 <td>
                                                     {{ ++$loop->index }}
                                                 </td>
-                                                <td>{{ $group->icon }}</td>
+                                                <td><img src="/images/{{ $group->icon }}" width="60" alt=""></td>
                                                 <td>{{ $group->title }}</td>
                                                 <td>{{ $group->content }}</td>
                                                 <td>{{ $group->age }}</td>
