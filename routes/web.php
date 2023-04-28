@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\TeacherController;
 use Egulias\EmailValidator\Parser\Comment;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
-/*
+/*vewdsxdcfed
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
