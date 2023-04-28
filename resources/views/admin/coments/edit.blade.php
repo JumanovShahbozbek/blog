@@ -39,7 +39,7 @@
 
                     
                     <strong> Photo :</strong>
-                    <input type="text" name="img" value="{{ $coment->img }}" class="form-control"> <br>
+                    <input type="file" name="img" value="{{ $coment->img }}" class="form-control"> <br>articles
 
                     
                     <strong> Surname :</strong>

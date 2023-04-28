@@ -33,6 +33,7 @@
                                             <th>title</th>
                                             <th>name</th>
                                             <th>content</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,21 +49,21 @@
                                                 <td>
                                                     {{ ++$loop->index }}
                                                 </td>
-                                                <td>{{ $article->icon }}</td>
+                                                <td><img src="/images/{{ $article->icon }}" width="60" alt=""></td>
                                                 <td>{{ $article->title }}</td>
                                                 <td>{{ $article->name }}</td>
                                                 <td>{{ $article->content }}</td>
 
-                                                {{--  <td>
-                                                    <form action="{{ route('admin.groups.destroy', $group->id) }}"
+                                                 <td>
+                                                    <form action="{{ route('admin.articles.destroy', $article->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="{{ route('admin.groups.show', $group->id) }}"
+                                                        <a href="{{ route('admin.articles.show', $article->id) }}"
                                                             class="btn btn-info">
                                                             <ion-icon class="fas fa-info-circle"></ion-icon>
                                                         </a>
-                                                        <a href="{{ route('admin.groups.edit', $group->id) }}"
+                                                        <a href="{{ route('admin.articles.edit', $article->id) }}"
                                                             class="btn btn-primary">
                                                             <ion-icon class="far fa-edit"></ion-icon>
                                                         </a>
@@ -71,7 +72,7 @@
                                                             <ion-icon class="fas fa-times"></ion-icon>
                                                         </button>
                                                     </form>
-                                                </td> --}}
+                                                </td>
 
                                             </tr>
                                         @endforeach

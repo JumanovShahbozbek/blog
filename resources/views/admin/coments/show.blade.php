@@ -37,7 +37,7 @@
                                             <td>
                                                 <p>Photo : </p>
                                             </td>
-                                            <td><b>{{ $coment->img }}</b></td>
+                                            <td><b><img src="/images/{{ $coment->img }}" width="60" alt=""></b></td>
                                         </tr>
 
                                         <tr>

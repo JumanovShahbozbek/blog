@@ -53,7 +53,7 @@
                                                 </td>
                                                 <td>{{ $coment->icon }}</td>
                                                 <td>{{ $coment->content }}</td>
-                                                <td>{{ $coment->img }}</td>
+                                                <td><img src="/images/{{ $coment->img }}" width="60" alt=""></td>
                                                 <td>{{ $coment->surname }}</td>
                                                 <td>{{ $coment->name }}</td>
                                                 <td>{{ $coment->subject }}</td>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComentRequest;
+use App\Models\Coment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,17 +22,29 @@ class ComentController extends Controller
         return view('admin.coments.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreComentRequest $request)
     {
+
+        $requestData = $request->all();
+
+        if($request->hasFile('img'))
+        {
+            $file = $request->file('img');
+            $imgName = $file->getClientOriginalName();
+            $file->move('images/', $imgName);
+            $requestData['img'] = $imgName ;
+        }
+        Coment::create($requestData);
+
        /* dd($request); */
-       DB::table('coments')->insert([
+      /*  DB::table('coments')->insert([
         'icon' => $request->icon,
         'content' => $request->content,
         'img' => $request->img,
         'surname' => $request->surname,
         'name' => $request->name,
         'subject' => $request->subject,
-       ]);
+       ]); */
 
        return redirect()->route('admin.coments.index');
     }
