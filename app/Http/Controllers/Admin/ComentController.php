@@ -27,26 +27,21 @@ class ComentController extends Controller
 
         $requestData = $request->all();
 
-        if($request->hasFile('img'))
-        {
+        if ($request->hasFile('img')) {
             $file = $request->file('img');
             $imgName = $file->getClientOriginalName();
             $file->move('images/', $imgName);
-            $requestData['img'] = $imgName ;
+            $requestData['img'] = $imgName;
+        }
+        if ($request->hasFile('icon')) {
+            $file = $request->file('icon');
+            $iconName = $file->getClientOriginalName();
+            $file->move('images/', $iconName);
+            $requestData['icon'] = $iconName;
         }
         Coment::create($requestData);
 
-       /* dd($request); */
-      /*  DB::table('coments')->insert([
-        'icon' => $request->icon,
-        'content' => $request->content,
-        'img' => $request->img,
-        'surname' => $request->surname,
-        'name' => $request->name,
-        'subject' => $request->subject,
-       ]); */
-
-       return redirect()->route('admin.coments.index');
+        return redirect()->route('admin.coments.index');
     }
 
     public function show($id)
@@ -67,7 +62,7 @@ class ComentController extends Controller
     {
         DB::table('coments')->where('id', $id)->update([
             'icon' => $request->icon,
-            'content'=> $request->content,
+            'content' => $request->content,
             'img' => $request->img,
             'surname' => $request->surname,
             'name' => $request->name,
@@ -83,5 +78,4 @@ class ComentController extends Controller
 
         return redirect()->route('admin.coments.index');
     }
-
 }

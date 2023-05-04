@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('title');
             $table->text('content')->nullable();
-            $table->integer('age')->nullable();
-            $table->integer('seat')->nullable();
+            $table->text('age')->nullable();
+            $table->text('seat')->nullable();
             $table->text('time')->nullable();
             $table->text('payment')->nullable();
             $table->timestamps();

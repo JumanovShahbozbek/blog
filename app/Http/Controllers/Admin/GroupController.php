@@ -21,19 +21,18 @@ class GroupController extends Controller
     {
         return view('admin.groups.create');
     }
-    
+
 
     public function store(StoreGroupRequest $request)
     {
-        
+
         /*   $request->validate([
             'icon' => 'required',
         ]); */
 
         $requestData = $request->all();
 
-        if($request->hasFile('icon'))
-        {
+        if ($request->hasFile('icon')) {
             $file = $request->file('icon');
             $iconName = $file->getClientOriginalName();
             $file->move('images/', $iconName);
@@ -41,18 +40,7 @@ class GroupController extends Controller
         }
         Group::create($requestData);
 
-       /* dd($request); */
-       /* DB::table('groups')->insert([
-        'icon' => $request->icon,
-        'title' => $request->title,
-        'content' => $request->content,
-        'age' => $request->age,
-        'seat' => $request->seat,
-        'time' => $request->time,
-        'payment' => $request->payment,
-       ]); */
-
-       return redirect()->route('admin.groups.index');
+        return redirect()->route('admin.groups.index');
     }
 
     public function show($id)

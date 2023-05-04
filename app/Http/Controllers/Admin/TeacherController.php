@@ -24,14 +24,9 @@ class TeacherController extends Controller
 
     public function store(StoreTeacherReequest $request)
     {
-/*         $request->validate([
-            'icon' => 'required',
-            'tgram' => 'required'
-        ]); */
         $requestData = $request->all();
 
-        if($request->hasFile('icon'))
-        {
+        if ($request->hasFile('icon')) {
             $file = $request->file('icon');
             $iconName = $file->getClientOriginalName();
             $file->move('images/', $iconName);
@@ -40,7 +35,7 @@ class TeacherController extends Controller
         Teacher::create($requestData);
 
 
-/*         DB::table('teachers')->insert([
+        /*         DB::table('teachers')->insert([
             'icon' => $request->icon,
             'tgram' => $request->tgram,
             'fbook' => $request->fbook,
@@ -69,7 +64,6 @@ class TeacherController extends Controller
 
     public function update(Request $request, $id)
     {
-
 
         DB::table('teachers')->where('id', $id)->update([
             'icon' => $request->icon,

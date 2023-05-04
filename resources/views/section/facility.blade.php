@@ -1,16 +1,19 @@
 <div class="container-fluid pt-5">
     <div class="container pb-3">
         <div class="row">
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
-                    <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
-                    <div class="pl-4">
-                        <h4>O'yin maydoni</h4>
-                        <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet elitr vero...</p>
+            @foreach ($infos as $info)
+                <div class="col-lg-4 col-md-6 pb-1">
+                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
+                        <i class="h1 font-weight-normal text-primary mb-3"><img src="images/{{ $info->icon }}"
+                                width="50px" alt=""></i>
+                        <div class="pl-4">
+                            <h4> {{ $info->title }} </h4>
+                            <p class="m-0"> {{ $info->description }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
+            @endforeach
+            {{--   <div class="col-lg-4 col-md-6 pb-1"> 
                 <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px;">
                     <i class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"></i>
                     <div class="pl-4">
@@ -54,7 +57,7 @@
                         <p class="m-0">Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero lorem amet elitr vero...</p>
                     </div>
                 </div>
-            </div>
+            </div>  --}}
         </div>
     </div>
 </div>

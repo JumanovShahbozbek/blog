@@ -24,24 +24,15 @@ class InfoController extends Controller
 
     public function store(StoreInfoRequest $request)
     {
-
         $requestData = $request->all();
 
-        if($request->hasFile('icon'))
-        {
+        if ($request->hasFile('icon')) {
             $file = $request->file('icon');
             $iconName = $file->getClientOriginalName();
-            $file->move('images/',$iconName);
+            $file->move('images/', $iconName);
             $requestData['icon'] = $iconName;
         }
         Info::create($requestData);
-
-        // dd($request);
-        /* DB::table('infos')->insert([
-            'title' => $request->title,
-            'icon' => $request->icon,
-            'description' => $request->description
-        ]); */
 
         return redirect()->route('admin.infos.index');
     }
