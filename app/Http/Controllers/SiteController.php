@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,9 @@ class SiteController extends Controller
 
     public function team()
     {
-        return view('pages.team');
+        $teachers = Teacher::limit(4)->latest()->get();
+
+        return view('pages.team', compact('teachers'));
     }
 
     public function achievements()
