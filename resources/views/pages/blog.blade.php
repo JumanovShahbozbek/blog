@@ -15,10 +15,10 @@
             <h1 class="mb-4">So'nggi maqolalar</h1>
         </div>
         <div class="row pb-3">
-
+         {{--  @foreach ($articles as $article) --}}
             @include('section.blog')
             @include('section.blog')
-            
+          {{-- @endforeach --}}
             <div class="col-md-12 mb-4">
                 <nav aria-label="Page navigation">
                   <ul class="pagination justify-content-center mb-0">

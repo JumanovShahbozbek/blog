@@ -41,7 +41,9 @@ class SiteController extends Controller
 
     public function achievements()
     {
-        return view('pages.achievements');
+        $articles = Article::limit(3)->latest()->get();
+
+        return view('pages.achievements', compact('articles'));
     }
 
     public function gallery()
@@ -51,7 +53,9 @@ class SiteController extends Controller
 
     public function blog()
     {
-        return view('pages.blog');
+        $articles = Article::limit(3)->latest()->get();
+
+        return view('pages.blog', compact('articles'));
     }
 
     public function registers(Request $request)
