@@ -35,7 +35,8 @@
                     <input type="text" name="title" value="{{ $info->title }}" class="form-control"> <br>
 
                     <strong> Icon :</strong>
-                    <input type="file" name="title" value="{{ $info->icon }}" class="form-control"> <br>
+                    <input type="file" name="icon" value="{{ $info->icon }}" class="form-control">
+                    <img src="/images/{{$info->icon}}" width="40px" alt=""><br><br>
 
                     <strong> Description :</strong>
                     <input type="text" name="description" value="{{ $info->description }}" class="form-control"> <br>

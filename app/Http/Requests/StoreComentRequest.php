@@ -27,4 +27,11 @@ class StoreComentRequest extends FormRequest
             'img' => 'required|max:2048',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'img.required' => 'rasm joylanishi shart',
+        ];
+    }
 }

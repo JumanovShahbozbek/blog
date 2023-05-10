@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreInfoRequest;
 use App\Models\Info;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreInfoRequest;
 
 class InfoController extends Controller
 {
+    
     public function index()
     {
-        $infos = DB::table('infos')->orderBy('id', 'DESC')->get();
+        $infos = Info::orderBy('id', 'DESC')->paginate(3);
 
         return view('admin.infos.index', compact('infos'));
     }
@@ -22,51 +22,65 @@ class InfoController extends Controller
         return view('admin.infos.create');
     }
 
+    
     public function store(StoreInfoRequest $request)
     {
         $requestData = $request->all();
 
-        if ($request->hasFile('icon')) {
-            $file = $request->file('icon');
-            $iconName = $file->getClientOriginalName();
-            $file->move('images/', $iconName);
-            $requestData['icon'] = $iconName;
+        if($request->hasFile('icon'))
+        {
+            $requestData['icon'] = $this->upload_file();
         }
+
         Info::create($requestData);
 
-        return redirect()->route('admin.infos.index');
+        return redirect(route('admin.infos.index'));
     }
 
+   
     public function show($id)
     {
-        $info = DB::table('infos')->where('id', $id)->first();
+        $info = Info::find($id);
 
         return view('admin.infos.show', compact('info'));
     }
 
+   
     public function edit($id)
     {
-        $info = DB::table('infos')->where('id', $id)->first();
+        $info = Info::find($id);
 
         return view('admin.infos.edit', compact('info'));
     }
 
-    public function update(Request $request, $id)
+   
+    public function update(StoreInfoRequest $request, $id)
     {
+        $requestData = $request->all();
 
-        DB::table('infos')->where('id', $id)->update([
-            'title' => $request->title,
-            'icon' => $request->icon,
-            'description' => $request->description,
-        ]);
+        if($request->hasFile('icon'))
+        {
+           $requestData['icon'] = $this->upload_file();
+        }
+
+        Info::find($id)->update($requestData);
+
+        return redirect(route('admin.infos.index'));
+    }
+
+    
+    public function destroy($id)
+    {
+        Info::find($id)->delete();
 
         return redirect()->route('admin.infos.index');
     }
 
-    public function destroy($id)
+    public function upload_file()
     {
-        DB::table('infos')->where('id', $id)->delete();
-
-        return redirect()->route('admin.infos.index');
+        $file = request()->file('icon');
+        $fileName = $file->getClientOriginalName();
+        $file->move('images/', $fileName);
+        return $fileName;
     }
 }

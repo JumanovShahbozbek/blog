@@ -27,4 +27,11 @@ class StoreInfoRequest extends FormRequest
             'icon' => 'required|max:2048',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'icon.required' => 'rasm joylanishi shart',
+        ];
+    }
 }
