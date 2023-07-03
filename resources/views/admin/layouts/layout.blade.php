@@ -310,6 +310,7 @@
                     </div>
                 </div>
             </div>
+            
             <footer class="main-footer">
                 <div class="footer-left">
                     <a href="templateshub.net">Templateshub</a></a>
